@@ -1,0 +1,38 @@
+
+<form [formGroup]="cocktailForm" (ngSubmit)="submit()">
+
+  <div class="form-group d-flex flex-c">
+    <label>Nom</label>
+    <input type="text" formControlName="name" >
+  </div>
+
+  <div class="form-group d-flex flex-c">
+    <label>Image</label>
+    <input type="text" formControlName="img" >
+  </div>
+
+  <div class="form-group d-flex flex-c">
+    <label>Description</label>
+    <input type="text" formControlName="description" >
+  </div>
+
+  <hr>
+  <button (click)="addIngredient()" type="button" class="btn btn-primary"> Ajouter un ingredient</button>
+  <hr>
+  <div formArrayName="ingredients">
+    <div [formGroupName]="index" *ngFor="let ingredient of ingredients.controls; let index = index">
+      <div class="form-group d-flex flex-c">
+        <label>Nom</label>
+        <input type="text" formControlName="name" >
+      </div>
+      <div class="form-group d-flex flex-c">
+        <label>Quantite</label>
+        <input type="number" formControlName="quantity" >
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <button [disabled]="cocktailForm.invalid" class="btn btn-primary">valider</button>
+    <button type="button" routerLink="../"  class="btn btn-secondary">annuler</button>
+  </div>
+</form>
